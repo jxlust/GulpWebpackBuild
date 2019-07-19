@@ -1,0 +1,123 @@
+/* Add font */
+
+@mixin font($font-family, $font-name: $font-family, $font-weight: normal, $font-style: normal){
+	@font-face {
+		font-family: '#{$font-family}';
+		src: resolve('#{$font-name}.woff2') format('woff2'),
+		resolve('#{$font-name}.woff') format('woff');
+		font-weight: $font-weight;
+		font-style: $font-style;
+	}
+}
+
+/* Media Queries */
+
+@mixin min($width){
+	@media screen and (min-width: $width) {
+		@content;
+	}
+}
+
+@mixin max($width){
+	@media screen and (max-width: $width) {
+		@content;
+	}
+}
+
+@mixin minmax($min-width, $max-width){
+	@media screen and (min-width: $min-width) and (max-width: $max-width) {
+		@content;
+	}
+}
+
+/* Set any aspect ratio */
+
+@mixin set($a: 1, $b: 1, $display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: ($b / $a) * 100%;
+		@content;
+	}
+}
+
+/* Get current aspect ratio */
+
+@mixin get($img, $display: block, $content: ""){
+	$a: width($img);
+	$b: height($img);
+	$c: calc(strip(#{$b}) / strip(#{$a}) * 100%);
+	&:before{
+		display: $display;
+		content: $content;
+		padding-bottom: $c;
+		@content;
+	}
+}
+
+/* Create img */
+
+@mixin img($img, $bg_size: cover){
+	background-image: resolve($img);
+	width: width($img);
+	max-width: 100%;
+	background-size: $bg_size;
+	background-position: center;
+	background-repeat: no-repeat;
+	@include get($img);
+}
+
+/* Mixins for Before and After */
+
+@mixin bef($display: block, $content: ""){
+	&:before{
+		display: $display;
+		content: $content;
+		@content;
+	}
+}
+
+@mixin aft($display: block, $content: ""){
+	&:after{
+		display: $display;
+		content: $content;
+		@content;
+	}
+}
+
+/* Reset */
+
+@mixin res(){
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,p{margin:0;padding:0;border:0;outline:0}
+h1,h2,h3,h4,h5,h6{font-weight:700;font-size:1em}
+html,body{position:relative;font-size:1em;font-weight:400;width:100%;height:100%}
+// body{font-family:'Sans-serif'}
+header,footer,section,article,aside,main,nav{display:block}
+img{border:none!important; max-width: 100%;}
+input,textarea{outline:none;box-shadow:none!important;}
+textarea{resize:none}
+a,a:visited,a:link,a:active{color:inherit;text-decoration:none;outline:0}
+/* SUPPORTING */
+.clear{clear:both}
+.ibt{display:inline-block;vertical-align:top}
+.ibm{display:inline-block;vertical-align:middle}
+.ibb{display:inline-block;vertical-align:bottom}
+.bbox{box-sizing:border-box}
+.tal{text-align:left}
+.tac{text-align:center}
+.tar{text-align:right}
+.contain{background-size:contain;background-position:center;background-repeat:no-repeat}
+.cover{background-size:cover;background-position:center;background-repeat:no-repeat}
+.helper{display:inline-block;vertical-align:middle;position:relative;height:100%;width:0}
+.bg_con{background-size:contain;background-position:center;background-repeat:no-repeat}
+.bg_cov{background-size:cover;background-position:center;background-repeat:no-repeat}
+.helper{display:inline-block;vertical-align:middle;position:relative;height:100%;width:0}
+.abs100{position:absolute;width:100%;height:100%;top:0;left:0}
+.fixed100{position:fixed;width:100%;height:100%;top:0;left:0}
+.typical-scroll-block{position:absolute;height:100%;top:0;left:0;overflow-x:hidden;overflow-y:scroll}
+.usn{-webkit-user-select:none;cursor:default}
+:focus::-webkit-input-placeholder {color: transparent}
+:focus::-moz-placeholder          {color: transparent}
+:focus:-moz-placeholder           {color: transparent}
+:focus:-ms-input-placeholder      {color: transparent}	
+}
