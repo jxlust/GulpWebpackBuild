@@ -17,7 +17,7 @@ const gulp = require('gulp'),
     mqpacker = require('css-mqpacker'),
     sortCSSmq = require('sort-css-media-queries'),
     postcssStripUnits = require('postcss-strip-units'),
-    webpack = require('webpack'),
+    //webpack = require('webpack'),
     path = require('path');
 
 isDev = true;
@@ -35,12 +35,7 @@ let webpackConfig = {
         //filename: 'bundle.js'
         filename: '[name].js'
     },
-    // plugins:[     
-    //     // 拆分插件
-    //     new webpack.optimize.CommonsChunkPlugin({
-    //      name:'user', // 上面入口定义的节点组
-    //      filename:'build-user.js' //最后生成的文件名
-    //     }),
+    // plugins:[
     // ],
     resolve: {
         extensions: ['.js', '.ts']
