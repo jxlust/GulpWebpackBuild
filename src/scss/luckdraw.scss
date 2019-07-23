@@ -4,5 +4,12 @@
 }
 $active-color: #ff0000;
 .active{
-    @include active($active-color) ;
+    @include active($active-color){color: $active-color};
+}
+.ul-luck{
+    width: 500px;
+    > li{
+        width: 200px;
+        display: inline-block;
+    }
 }

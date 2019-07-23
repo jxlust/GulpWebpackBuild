@@ -1,4 +1,4 @@
-let isDebug = false;
+let isDebug = true;
 let console = {
     log(){
         //console.log('=============',arguments);

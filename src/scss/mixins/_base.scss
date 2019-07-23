@@ -1,0 +1,31 @@
+$width-small:  400px;
+$width-medium: 760px;
+$width-large:  1200px;
+@mixin responsive($width) {
+  @if $width == wide-screens {
+    @media only screen and (max-width: $width-large) { @content; }
+  }
+  @else if $width == medium-screens {
+    @media only screen and (max-width: $width-medium) { @content; }
+  }
+  @else if $width == small-screens {
+    @media only screen and (max-width: $width-small) { @content; }
+  }
+}
+  
+#content {
+  float: left;
+  width: 70%;
+  @include responsive(wide-screens) {
+    width: 80%;
+  }
+  @include responsive(medium-screens) {
+    width: 50%;
+    font-size: 14px;
+  }
+  @include responsive(small-screens) {
+    float: none;
+    width: 100%;
+    font-size: 12px;
+  }
+}
