@@ -88,7 +88,6 @@ $(function(){
         this.aniDelay = this.options.defaultAnimateDelay; //当前动画的延迟
         this.currCircle = 0; //当前第几圈
     };
-
     luckdraw.prototype._bindEvents = function(){
         var _this = this;
 

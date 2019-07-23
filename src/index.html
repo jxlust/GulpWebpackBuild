@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<meta name="format-detection" content="telephone=yes"/>
+	<meta name="format-detection" content="telephone=yes" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/index2.css">
+
 </head>
+
 <body>
 	<h1 class="tac">Hello!</h1>
 	<div class="box"></div>
+
+	<ul class="" id="testId">
+		<li class="js-item" data-sort="1" data-prize-id="100">奖品1</li>
+		<li class="js-item" data-sort="2" data-prize-id="101">奖品2</li>
+		<li class="js-item" data-sort="3" data-prize-id="102">奖品3</li>
+		<li class="js-item" data-sort="6" data-prize-id="103">奖品4</li>
+		<li class="js-item" data-sort="5" data-prize-id="104">奖品5</li>
+		<li class="js-item" data-sort="4" data-prize-id="105">奖品6</li>
+		<div class="js-start-draw" style="height: 100px;width: 100px">
+			<p>开始</p>
+		</div>
+	</ul>
+
+	<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
 	<script src="js/index.js"></script>
 	<script src="js/index2.js"></script>
 	<script src="js/luckDraw.js"></script>
 	<script>
-		let ld = new LuckDraw('lizi');
-		console.log('打印',ld.getName());
+		// let ld = new LuckDraw('lizi');
+		// console.log('打印',ld.getName());
+		let ld = new LuckDraw('#testId', {});
 	</script>
 </body>
+
 </html>

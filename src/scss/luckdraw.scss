@@ -1,0 +1,8 @@
+@mixin active($color: #fff) {
+    @content;
+    border: 1px dashed $color;
+}
+$active-color: #ff0000;
+.active{
+    @include active($active-color) ;
+}
