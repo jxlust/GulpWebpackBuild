@@ -112,6 +112,7 @@ class LuckDraw{
         }
         //添加选中本次
         this.prizeLists[this.animateIndex].addClass(options.activeClass);
+        
         if(this.currentCircle === options.defCircleCount && this.prizeLists[this.animateIndex].attr(options.prizeIds) == prizeId){
             //抽奖完成结束
             this.turnEnd(prizeId);
