@@ -12,7 +12,7 @@ const MAX_DIFF = 2;
  * jxl:转盘抽奖插件
  * 依赖jq
  */
-class LuckDraw {
+class CircleDraw {
     constructor(select, prizeObj, options) {
         //this.select = select;
         this.$select = null;
@@ -187,10 +187,10 @@ class LuckDraw {
 
 }
 
-LuckDraw.prototype.showMsg = function (msg) {
+CircleDraw.prototype.showMsg = function (msg) {
     console.log('msg:', msg);
 }
-window.LuckDraw = LuckDraw;
+window.CircleDraw = CircleDraw;
 /**
  * 定义私有方法
  * @param {string} select 选择器
@@ -200,5 +200,5 @@ function privateName(select) {
 }
 
 export {
-    LuckDraw
+    CircleDraw
 }

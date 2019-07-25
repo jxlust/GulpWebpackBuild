@@ -4,7 +4,7 @@
 // import * as obj from './js/es6.js';
 // console.log('es6',obj.name);
 
-import {LuckDraw} from './js/luckDraw.js';
+import {CircleDraw} from './js/circleDraw.js';
 
 // let ld = new LuckDraw('lizi');
 // console.log('打印',ld.getName());
@@ -18,6 +18,7 @@ let options = {
     onStartClick: function (el) {
         console.log('start element', el);
         console.log('haha', this.getName('猪猪猪'));
+        console.log('锁',this.getIsLocked());
         this.start(prizeData.prizeId);
     },
     calcAnimateDelay: function(aniDelay,curCircle,aniIndex) {
@@ -28,4 +29,4 @@ let options = {
     }
 
 }
-let ld = new LuckDraw('#testId', prizeData, options);
+let ld = new CircleDraw('#testId', prizeData, options);
