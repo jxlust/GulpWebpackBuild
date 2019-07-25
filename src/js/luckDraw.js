@@ -2,13 +2,16 @@ import {
     console
 } from './log.js';
 
+/**延迟偏差值 */
+const DELY_OFFSET = 5;
+/**最大加速的圈数百分比 */
+const MAX_PERCENT = 0.8;
+/**最大圈数的差 */
+const MAX_DIFF = 2;
 /**
  * jxl:转盘抽奖插件
  * 依赖jq
  */
-const DELY_Offset = 5;
-const MAX_Percent = 0.8;
-const MAX_Diff = 2;
 class LuckDraw {
     constructor(select, prizeObj, options) {
         //this.select = select;
@@ -143,12 +146,12 @@ class LuckDraw {
         //计算延迟时间
         //1.前面几圈速度较快或者普快
         //2.后面几圈速度较慢
-        if (this.currentCircle < Math.max(options.defCircleCount * MAX_Percent, options.defCircleCount - MAX_Diff)) {
+        if (this.currentCircle < Math.max(options.defCircleCount * MAX_PERCENT, options.defCircleCount - MAX_DIFF)) {
             //越来越慢但是最小不小于最小值
-            this.animateDelay = Math.max(this.animateDelay - DELY_OFFSET,options.minAnimateDelay);
+            this.animateDelay = Math.max(this.animateDelay - DELY_OFFSET, options.minAnimateDelay);
         } else {
             //最大不会大于最大值
-            this.animateDelay = Math.min(this.animateDelay + this.animateIndex * DELY_OFFSET * options.defCircleCount ,options.maxAnimateDelay);   
+            this.animateDelay = Math.min(this.animateDelay + this.animateIndex * DELY_OFFSET * options.defCircleCount, options.maxAnimateDelay);
         }
     }
     turnEnd(prizeId) {
