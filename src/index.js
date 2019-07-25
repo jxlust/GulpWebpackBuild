@@ -19,6 +19,12 @@ let options = {
         console.log('start element', el);
         console.log('haha', this.getName('猪猪猪'));
         this.start(prizeData.prizeId);
+    },
+    calcAnimateDelay: function(aniDelay,curCircle,aniIndex) {
+        // if(curCircle === 5){
+        //     return 1000;
+        // }
+        
     }
 
 }

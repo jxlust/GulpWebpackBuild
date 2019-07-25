@@ -28,8 +28,8 @@ let webpackConfig = {
     //entry:['./src/main.js','./src/login.js','./src/reg.js'],
     entry: {
         'index': './src/index.js',
-        'index2': ['./src/index2.js'],
-        'luckDraw': './src/js/luckDraw.js'
+        'index2': ['./src/index2.js']
+        // 'luckDraw': './src/js/luckDraw.js'
     },
     output: {
         //path: path.resolve("src/", "/dist/js"),

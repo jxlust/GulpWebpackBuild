@@ -26,7 +26,7 @@ function add(a,b) {
 	return a + b;
 }
 
-let name = "我是很厉害的啦啦";
+let name = "你是我的小可爱啦啦";
 // module.export = {
 // 	name: name,
 // 	getName: add

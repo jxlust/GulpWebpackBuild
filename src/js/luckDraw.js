@@ -1,11 +1,16 @@
-import {console} from './log.js';
-import { callbackify } from 'util';
+import {
+    console
+} from './log.js';
+
 /**
  * jxl:转盘抽奖插件
  * 依赖jq
  */
-class LuckDraw{
-    constructor(select,prizeObj,options) {
+const DELY_Offset = 5;
+const MAX_Percent = 0.8;
+const MAX_Diff = 2;
+class LuckDraw {
+    constructor(select, prizeObj, options) {
         //this.select = select;
         this.$select = null;
         this.prizeObj = prizeObj;
@@ -17,26 +22,27 @@ class LuckDraw{
             itemClass: 'js-item',
             activeClass: 'active',
             startBtnClass: 'js-start-draw',
-            dataSorts: 'data-sort',//分类
-            prizeIds: 'data-prize-id',//奖品id
-            defaultAnimateDelay: 200,//动画延时200毫秒
-            defCircleCount: 3,//默认圈数
+            dataSorts: 'data-sort', //分类
+            dataPrizeId: 'data-prize-id', //奖品id
+            defaultAnimateDelay: 200, //动画延时200毫秒
+            defCircleCount: 5, //默认圈数
             minAnimateDelay: 50,
             maxAnimateDelay: 500,
-            onStart(){},
-            onEnd(prizeobj){},
-            onStartClick(element){},
-            onLock(){},
-            onUnlock(){}
+            calcAnimateDelay: false, //计算动画延迟时间
+            onStart() {},
+            onEnd(prizeobj) {},
+            onStartClick(element) {},
+            onLock() {},
+            onUnlock() {}
         }
         //浅拷贝一层对象
-        Object.assign(this.options,options);
+        Object.assign(this.options, options);
         this.init(select);
-        privateName.call(this,'调用私有方法');
+        privateName.call(this, '调用私有方法');
     }
-    init(select){
-        var $select =  $(select),
-            $lis = $select.find('.'+this.options.itemClass);
+    init(select) {
+        var $select = $(select),
+            $lis = $select.find('.' + this.options.itemClass);
         this.$select = $select;
         //this.$lis = $lis;
         //排序抽奖列表
@@ -45,33 +51,33 @@ class LuckDraw{
         this.initParams();
         //绑定事件
         this.bindEvent();
-        
+
     }
-    sortLists($lis){
+    sortLists($lis) {
         //箭头函数方便获取上下文
         //dom元素存储方便使用，减少dom操作
-        $lis.each((index,el) => {
+        $lis.each((index, el) => {
             this.prizeLists.push($lis.filter(`[${this.options.dataSorts} = ${(index + 1)}]`));
         })
     }
-    initParams(){
+    initParams() {
         this.animateIndex = 0;
         this.currentCircle = 0;
         this.animateDelay = this.options.defaultAnimateDelay;
 
     }
-    bindEvent(){
-        console.log('animateIndex',this);
-        this.$select.on('click',`.${this.options.startBtnClass}`,(event) => {
-            console.log('currentTarget:',event.currentTarget); 
-            console.log('target:',event.target);
+    bindEvent() {
+        console.log('animateIndex', this);
+        this.$select.on('click', `.${this.options.startBtnClass}`, (event) => {
+            console.log('currentTarget:', event.currentTarget);
+            console.log('target:', event.target);
             //暴露接口，暴露了所有方法和成员
-            (typeof this.options.onStartClick === 'function') && this.options.onStartClick.call(this,event.currentTarget);
+            (typeof this.options.onStartClick === 'function') && this.options.onStartClick.call(this, event.currentTarget);
         });
     }
-    start(prizeId){
+    start(prizeId) {
         var options = this.options;
-        if(this.getIsLocked() || this.prizeLists.length === 0){
+        if (this.getIsLocked() || this.prizeLists.length === 0) {
             //已锁 不执行
             return;
         }
@@ -79,10 +85,10 @@ class LuckDraw{
         //初始化数据
         this.initParams();
         //移除掉选中样式
-        this.prizeLists.forEach(($value)=>{
-            if($value.hasClass(options.activeClass)){
+        this.prizeLists.forEach(($value) => {
+            if ($value.hasClass(options.activeClass)) {
                 $value.removeClass(options.activeClass);
-                return false;//相当于break终止本次循环
+                return false; //相当于break终止本次循环
                 //throw new Error('end');//直接终止foreach
             }
         })
@@ -99,64 +105,87 @@ class LuckDraw{
      * 抽奖过程方法
      * @param {number} prizeId 中奖的id
      */
-    turning(prizeId){
+    turning(prizeId) {
         let options = this.options;
         //this.prizeLists.length;
         //移除上一次样式
         this.prizeLists[this.animateIndex].removeClass(options.activeClass);
-
         this.animateIndex++;
-        if(this.animateIndex === this.prizeLists.length){
+        if (this.animateIndex === this.prizeLists.length) {
             this.animateIndex = 0;
-            this.currentCircle =+ 1;
+            this.currentCircle += 1;
         }
         //添加选中本次
         this.prizeLists[this.animateIndex].addClass(options.activeClass);
-        
-        if(this.currentCircle === options.defCircleCount && this.prizeLists[this.animateIndex].attr(options.prizeIds) == prizeId){
+
+        //计算执行下一次的延迟时间
+        this.calcAnimateDelay();
+        if (this.currentCircle === options.defCircleCount && this.prizeLists[this.animateIndex].attr(options.dataPrizeId) == prizeId) {
             //抽奖完成结束
             this.turnEnd(prizeId);
-        }else{
+        } else {
             setTimeout(() => {
                 this.turning(prizeId);
             }, this.animateDelay);
         }
     }
-    turnEnd(prizeId){
+    calcAnimateDelay() {
+        let options = this.options,
+            delay;
+        if (typeof options.calcAnimateDelay === 'function') {
+            delay = options.calcAnimateDelay.apply(this, [this.animateDelay, this.currentCircle, this.animateIndex]);
+        }
+        if (delay) {
+            //用户自定义了使用用户自定义的延迟时间
+            this.animateDelay = delay;
+            return;
+        }
+        //计算延迟时间
+        //1.前面几圈速度较快或者普快
+        //2.后面几圈速度较慢
+        if (this.currentCircle < Math.max(options.defCircleCount * MAX_Percent, options.defCircleCount - MAX_Diff)) {
+            //越来越慢但是最小不小于最小值
+            this.animateDelay = Math.max(this.animateDelay - DELY_OFFSET,options.minAnimateDelay);
+        } else {
+            //最大不会大于最大值
+            this.animateDelay = Math.min(this.animateDelay + this.animateIndex * DELY_OFFSET * options.defCircleCount ,options.maxAnimateDelay);   
+        }
+    }
+    turnEnd(prizeId) {
         this.initParams();
         this.unlock();
         //执行回调
-        (typeof options.onEnd === 'function') && options.onEnd.apply(this,[prizeId,this.prizeObj]);
+        (typeof this.options.onEnd === 'function') && this.options.onEnd.apply(this, [prizeId, this.prizeObj]);
     }
     /**
      * 锁定，不能抽
      */
-    lock(){
+    lock() {
         this.isLocked = true;
         (typeof this.options.onLock === 'function') && this.options.onLock.apply(this);
     }
     /**
      * 解锁
      */
-    unlock(){
+    unlock() {
         this.isLocked = false;
         (typeof this.options.onUnlock === 'function') && this.options.onUnlock.apply(this);
     }
     /**
      * @return {Boolean} 返回锁定状态
      */
-    getIsLocked(){
+    getIsLocked() {
         return this.isLocked;
     }
 
-    getName(str){
+    getName(str) {
         return `${str}--hello ${this.name}`;
     }
 
 }
 
 LuckDraw.prototype.showMsg = function (msg) {
-    console.log('msg:',msg);
+    console.log('msg:', msg);
 }
 window.LuckDraw = LuckDraw;
 /**
@@ -164,9 +193,9 @@ window.LuckDraw = LuckDraw;
  * @param {string} select 选择器
  */
 function privateName(select) {
-    console.log('select',select);
+    console.log('select', select);
 }
 
-export{
+export {
     LuckDraw
 }
