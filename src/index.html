@@ -14,7 +14,6 @@
 <body>
 	<h1 class="tac">Hello!</h1>
 	<div class="box"></div>
-
 	<ul class="ul-luck" id="testId">
 		<li class="js-item" data-sort="1" data-prize-id="100">奖品1</li>
 		<li class="js-item" data-sort="2" data-prize-id="101">奖品2</li>
@@ -27,10 +26,60 @@
 		</div>
 	</ul>
 
+	<div style="margin-top: 100px"></div>
+	<div class="outer">
+		<div class="inner"></div>
+	</div>
 	<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
 	<script src="js/index.js"></script>
 	<script src="js/index2.js"></script>
-	
+	<script>
+		$(function () {
+			$('.inner').on('drop', function (event) {
+				ignoreDrag(event);
+				console.log('drop...');
+			});
+			$('.inner').on('dragstart', function (event) {
+				ignoreDrag(event);
+				console.log('dragstart...');
+			});
+			$('.inner').on('drag', function (event) {
+				ignoreDrag(event);
+				console.log('drag...');
+			});
+
+			function ignoreDrag(e) {
+				//因为我们在处理拖放，所以应该确保没有其他元素会取得这个事件
+				e.stopPropagation();
+				e.preventDefault();
+			}
+		});
+
+		// //拖拽
+		// $(document).on('drop', function (e) {
+		// 	console.log('drop..');
+		// 	//拖拽放手了，这里需要处理图片数据
+		// 	ignoreDrag(e);
+		// });
+
+		// $(document).on('dragstart', function (e) {
+		// 	console.log('dragstart..');
+		// 	ignoreDrag(e);
+		// })
+		// $(document).on('dragenter', function (e) {
+		// 	ignoreDrag(e);
+		// 	console.log('dragenter');
+		// });
+		// $(document).on('dragover', function (e) {
+		// 	ignoreDrag(e);
+		// 	console.log('dragover');
+		// });
+		// $(document).on('dragleave', function (e) {
+		// 	ignoreDrag(e);
+		// 	console.log('dragleave');
+		// });
+	</script>
+
 </body>
 
 </html>
