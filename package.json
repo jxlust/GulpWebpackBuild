@@ -22,6 +22,7 @@
     "cssnano": "^4.1.10",
     "del": "^5.0.0",
     "eslint": "^6.0.1",
+    "file-loader": "^4.1.0",
     "gulp": "^4.0.2",
     "gulp-if": "^3.0.0",
     "gulp-notify": "^3.2.0",
@@ -38,6 +39,7 @@
     "postcss-strip-units": "^2.0.1",
     "regenerator-runtime": "^0.13.2",
     "sort-css-media-queries": "^1.4.3",
+    "url-loader": "^2.1.0",
     "webpack": "^4.36.1",
     "webpack-stream": "^5.2.1"
   },

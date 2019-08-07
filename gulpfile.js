@@ -39,14 +39,24 @@ let webpackConfig = {
     // plugins:[
     // ],
     resolve: {
-        extensions: ['.js', '.ts','.es6']
+        extensions: ['.js', '.ts', '.es6']
     },
     module: {
         rules: [{
-            test: /\.(js|ts)$/,
-            loader: 'babel-loader',
-            exclude: '/node_modules/'
-        }]
+                test: /\.(js|ts)$/,
+                loader: 'babel-loader',
+                exclude: '/node_modules/'
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 15000
+                    }
+                }]
+            }
+        ]
     },
     mode: isDev ? 'development' : 'production',
     devtool: isProd ? false : 'cheap-module-eval-source-map'
