@@ -80,7 +80,7 @@ function styles() {
         .pipe(gulpif(isProd, postcss([cssnano()])))
         //.pipe(rename('bundle.css'))
         .pipe(gulpif(isProd, rename(function (path) {
-            path.extname = ".css"
+            path.extname = ".min.css"
         })))
         .pipe(gulpif(isDev, sourcemaps.write()))
         .pipe(gulp.dest('./dist/css'))

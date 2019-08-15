@@ -214,6 +214,15 @@ function privateName(select) {
     console.log('select', select);
 }
 
+let obj = {
+    a: 1,
+    b: 2
+}
+let name = 'lili';
+
+export default CircleDraw;
+export var test ='222';
 export {
-    CircleDraw
+    obj,
+    name
 }
