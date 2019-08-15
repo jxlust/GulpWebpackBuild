@@ -2,6 +2,21 @@ import {
     console
 } from './log.js';
 
+// class Person {
+//     constructor(props) {
+//         this.id = props.id;
+//         this.name = props.name;
+//     }
+// }
+
+// class Student extends Person {
+//     constructor(props) {
+//         super(props);
+//         this.stuNum = props.stuNum;
+//         this.stuNum1 = props.stuNum1;
+//     }
+// }
+
 /**延迟偏差值 */
 const DELY_OFFSET = 5;
 /**最大加速的圈数百分比 */
