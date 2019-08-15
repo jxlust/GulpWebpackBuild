@@ -1,3 +1,4 @@
+### vscode
 ```
 {
 	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
