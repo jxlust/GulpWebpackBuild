@@ -204,8 +204,13 @@ class CircleDraw {
 
 CircleDraw.prototype.showMsg = function (msg) {
     console.log('msg:', msg);
+    cInit(msg);
 }
-window.CircleDraw = CircleDraw;
+
+function cInit(msg) {
+    console.log('you are' + msg);
+}
+//window.CircleDraw = CircleDraw;
 /**
  * 定义私有方法
  * @param {string} select 选择器
@@ -221,7 +226,7 @@ let obj = {
 let name = 'lili';
 
 export default CircleDraw;
-export var test ='222';
+export var test = '222';
 export {
     obj,
     name

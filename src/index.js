@@ -9,12 +9,16 @@ import CircleDraw, {
     obj,
     name
 } from './js/circleDraw.js';
+import TableLine from './js/tableLine';
+
+console.log(new CircleDraw().showMsg('jssss'));
 console.log('tttt', test1 + '-' + obj.a + '-' + name );
 // let ld = new LuckDraw('lizi');
 // console.log('打印',ld.getName());
 let prizeData = {
     prizeId: 103
 }
+ 
 let options = {
     onStart: function () {
         console.log('开始了抽奖。。。。');
