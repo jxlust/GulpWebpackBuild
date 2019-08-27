@@ -1,6 +1,6 @@
 class TableLine {
     constructor() {
-
+        
     }
     init() {
 
