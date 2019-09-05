@@ -10,6 +10,7 @@ import CircleDraw, {
     name
 } from './js/circleDraw.js';
 import TableLine from './js/tableLine';
+import lazyImg from './js/lazyLoadImg';
 
 console.log(new CircleDraw().showMsg('jssss'));
 console.log('tttt', test1 + '-' + obj.a + '-' + name );
@@ -38,3 +39,5 @@ let options = {
 
 }
 let ld = new CircleDraw('#testId', prizeData, options);
+
+new lazyImg('lazyloading');
