@@ -84,25 +84,47 @@
 		<div class="inner"></div>
 	</div>
 	<div class="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
-		<img class="lazyloading" src="/assets/sdklogo.png" data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=""
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=""
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=""
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=" "
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=" "
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=" "
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=" "
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=" "
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src=" "
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
+		<img class="lazyloading" src="/assets/sdklogo.png"
+			data-src="http://pic.test.3d66.com/thuimg/newcache/324/8465/846507_1287437.jpg" alt="">
 
-		
+
 	</div>
 
 	<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
 	<script src="js/index.js"></script>
 	<script src="js/index2.js"></script>
+	<script src="/assets/jqlazyload.js"></script>
 	<script>
+			try {
+				$('.lazyloading').lazyload({
+					placeholder: "http://localhost:3000/assets/sdklogo.png", //用图片提前占位
+					// placeholder,值为某一图片路径.此图片用来占据将要加载的图片的位置,待图片加载时,占位图则会隐藏
+					effect: "fadeIn", // 载入使用何种效果
+					//threshold: 1000, // 提前开始加载
+				});
+			} catch (e) {
+				//TODO handle the exception
+			}
 		$(function () {
+
 			$('.inner').on('drop', function (event) {
 				ignoreDrag(event);
 				console.log('drop...');

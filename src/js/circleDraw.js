@@ -1,6 +1,6 @@
-import {
-    console
-} from './log.js';
+// import {
+//     console
+// } from './log.js';
 
 // class Person {
 //     constructor(props) {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index3.css">
+
+</head>
+
+<body class="frontBody">
+    
+    <main role="main" class="app-main">
+        <div class="loading-wrap">
+            <img src="/assets/Circulo.svg" class="loadingImg">
+        </div>
+        <div class="bottom-wrap">
+            <div class="bottom-end">
+                <div class="bottom-content">
+                    <div>
+                        <h3 class="Title-jxl">Cookies Policy</h3>
+                        <p class="Text-jxl">We use cookies to optimise this website and continuously update
+                            it according to your needs. Please click on “Cookies” for detailed information on the use of
+                            cookies on this website. If you click “Yes, I agree”, cookies will be activated. If you do
+                            not want cookies to be activated, you can opt out here. The settings can be changed at any
+                            time under “Cookies”.</p>
+                    </div>
+                    <button class="Button-jxl jsBtn">
+                        Yes, I agree!
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <script src="js/index2.js"></script>
+    <script>
+        $('.jsBtn').on('click',function () {
+            $('.loading-wrap').css({
+                'z-index': 1000
+            })
+        })
+    </script>
+
+
+</body>
+
+</html>

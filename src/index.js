@@ -40,4 +40,4 @@ let options = {
 }
 let ld = new CircleDraw('#testId', prizeData, options);
 
-new lazyImg('lazyloading');
+// new lazyImg('lazyloading');
