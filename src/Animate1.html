@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index4.css">
+
+</head>
+
+<body class="frontBody">
+
+    <div class="home-content ">
+        <div class="btn-outer">
+            <div class="btn-inner">
+                <div class="btn-inner-second">
+                    <div class="btn">View work</div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-line"></div>
+        <div class="contact">
+            <span class="contact-title">Contact</span>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        setInterval(function () {
+            var hC = $('.home-content');
+            if(hC.hasClass('home-content-opacity')){
+                $('.home-content').removeClass('home-content-opacity');
+            }else{
+                $('.home-content').addClass('home-content-opacity');
+            }
+            
+        },5000);
+        $('.btn-outer').mouseenter(function () {
+            $('.bottom-line').addClass('hoveredLine');
+        })
+        $('.btn-outer').mouseleave(function () {
+            $('.bottom-line').removeClass('hoveredLine');
+        })
+    </script>
+</body>
+
+</html>
