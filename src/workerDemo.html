@@ -19,6 +19,7 @@
     </div>
 
     <!-- <script async src="js/native/MainThread.js"></script> -->
+    <script async src="js/native/PollingThread.js"></script>
 
     <!-- 通常情况下，Worker 载入的是一个单独的 JavaScript 脚本文件，但是也可以载入与主线程在同一个网页的代码。 -->
     <script id="worker" type="app/worker">
@@ -27,6 +28,7 @@
             console.log(111111111);
             self.postMessage('some message');
         }, false);
+        console.log();
     </script>
     <script async>
         window.onload = function () {
@@ -37,6 +39,11 @@
             worker.onmessage = function (e) {
                 console.log('main', e.data);
             }
+            /**
+            上面代码中，先将嵌入网页的脚本代码，转成一个二进制对象，然后为这个二进制对象生成 URL，
+            再让 Worker 加载这个 URL。这样就做到了，主线程和 Worker 的代码都在同一个网页上面。
+            **/
+            
         }
     </script>
 
