@@ -5,5 +5,15 @@
 	],
 	"plugins": [
 		"@babel/plugin-proposal-class-properties"
+		//  "@babel/plugin-transform-runtime"
+		// [
+		// 	"transform-runtime",
+		// 	{
+		// 	  "helpers": false,
+		// 	  "polyfill": false,
+		// 	  "regenerator": true,
+		// 	  "moduleName": "babel-runtime"
+		// 	}
+		// ]
 	]
 }
